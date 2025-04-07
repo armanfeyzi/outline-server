@@ -12,14 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ARG NODE_IMAGE
+# Replace the build arg with a direct FROM statement
+FROM node:16.18.0-alpine
 
-FROM ${NODE_IMAGE}
-ARG VERSION
-
+ARG VERSION=latest
 # Save metadata on the software versions we are using.
 LABEL shadowbox.node_version=16.18.0
-
 LABEL shadowbox.github.release=${VERSION}
 
 # The user management service doesn't quit with SIGTERM.
