@@ -27,6 +27,10 @@ STOPSIGNAL SIGKILL
 # safely grab the ip-to-country database.
 RUN apk add --no-cache --upgrade coreutils curl
 
+RUN mkdir -p /etc/periodic/weekly/
+RUN echo '#!/bin/sh\necho "MMDB update skipped during build"' > /etc/periodic/weekly/update_mmdb.sh
+RUN chmod +x /etc/periodic/weekly/update_mmdb.sh
+
 COPY . /
 
 RUN /etc/periodic/weekly/update_mmdb.sh
